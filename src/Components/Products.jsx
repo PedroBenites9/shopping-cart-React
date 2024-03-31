@@ -1,7 +1,7 @@
 import "./Products.css";
 import { AddToCartIcon } from "./Icon";
 
-export function Products({ products }) {
+export function Products(products) {
   return (
     <main className="products">
       <ul>
