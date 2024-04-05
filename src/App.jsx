@@ -1,38 +1,37 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import products from "./Mocks/products.json";
 import { Products } from "./Components/Products";
 import { Header } from "./Components/Header";
+import { FilterContext } from "./context/filter";
 
 //hook useFilters()
 function useFilters() {
-  const [filters, setFilters] = useState({
-    category: "all",
-    minPrice: 0,
-  });
-
+  //llamamos al provider mediante destructuracion
+  const { prodCategory, setProdCategory } = useContext(FilterContext);
+  console.log(prodCategory.minPrice);
   // obtenemos los valores y comparamos con los parametros que le damos, para luego mostrarlo desde el header
   const filterProducts = (product) => {
     return product.filter((filterProdu) => {
       return (
-        filterProdu.price >= filters.minPrice &&
-        (filters.category === "all" ||
-          filterProdu.category === filters.category)
+        filterProdu.price >= prodCategory.minPrice &&
+        (prodCategory.category === "all" ||
+          filterProdu.category === prodCategory.category)
       );
     });
   };
-  return { filterProducts, setFilters };
+  return { filterProducts, setProdCategory };
 }
 
 function App() {
   const [leProductos] = useState(products.products);
-  const { filterProducts, setFilters } = useFilters();
+  const { filterProducts, setProdCategory } = useFilters();
   const filteredProducts = filterProducts(leProductos);
 
   return (
     <>
       {/* filtrar por categoria y precio */}
-      <Header changeFilters={setFilters} />
+      <Header changeFilters={setProdCategory} />
       <Products products={filteredProducts} />
     </>
   );
