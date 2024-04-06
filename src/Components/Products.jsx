@@ -4,6 +4,7 @@ import { AddToCartIcon } from "./Icon";
 export function Products({ products }) {
   products.map((e) => console.log(e));
   return (
+    // limita la muestra hasta 10 productos
     <main className="products">
       <ul>
         {products.slice(0, 10).map((product) => (

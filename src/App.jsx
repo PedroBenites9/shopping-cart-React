@@ -1,32 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import products from "./Mocks/products.json";
 import { Products } from "./Components/Products";
 import { Header } from "./Components/Header";
+import { useFilters } from "./Hooks/useFilters";
 
 function App() {
-  const [productos] = useState(products.products);
-  const [filter, setFilter] = useState({
-    category: "all",
-    minPrice: 0,
-  });
-
-  const productosFiltrados = (products) => {
-    return products.filter((prod) => {
-      return (
-        prod.price >= filter.minPrice &&
-        (filter.category === "all" || prod.category === filter.category)
-      );
-    });
-  };
-
-  const filtrado = productosFiltrados(productos);
+  const [leProductos] = useState(products.products);
+  const { filterProducts, setProdCategory } = useFilters();
+  const filteredProducts = filterProducts(leProductos);
 
   return (
     <>
       {/* filtrar por categoria y precio */}
-      <Header />
-      <Products products={filtrado} />
+      <Header changeFilters={setProdCategory} />
+      <Products products={filteredProducts} />
     </>
   );
 }
