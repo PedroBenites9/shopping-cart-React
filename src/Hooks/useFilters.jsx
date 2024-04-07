@@ -5,7 +5,6 @@ import { FilterContext } from "../context/filter";
 export function useFilters() {
   //llamamos al provider mediante destructuracion
   const { prodCategory, setProdCategory } = useContext(FilterContext);
-  console.log(prodCategory.minPrice);
   // obtenemos los valores y comparamos con los parametros que le damos, para luego mostrarlo desde el header
   const filterProducts = (product) => {
     return product.filter((filterProdu) => {
@@ -16,5 +15,5 @@ export function useFilters() {
       );
     });
   };
-  return { filterProducts, setProdCategory };
+  return { filterProducts, setProdCategory, prodCategory };
 }
