@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import products from "./Mocks/products.json";
 import { Products } from "./Components/Products";
