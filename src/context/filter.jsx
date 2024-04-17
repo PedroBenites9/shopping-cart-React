@@ -14,7 +14,6 @@ export function FiltersProvider({ children }) {
     category: "all",
     minPrice: 0,
   });
-  console.log(prodCategory);
   //aqui asignamos quienes van a adquirir los datos que se van asginando, elegimos a los componentes que esten dentro del provider (hijos)
   return (
     <FilterContext.Provider value={{ prodCategory, setProdCategory }}>

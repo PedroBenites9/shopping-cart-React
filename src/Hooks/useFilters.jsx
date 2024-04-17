@@ -8,7 +8,6 @@ export function useFilters() {
   // obtenemos los valores y comparamos con los parametros que le damos, para luego mostrarlo desde el header
   const filterProducts = (product) => {
     return product.filter((filterProdu) => {
-      console.log(product);
       return (
         filterProdu.price >= prodCategory.minPrice &&
         (prodCategory.category === "all" ||
